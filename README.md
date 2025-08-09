@@ -41,20 +41,67 @@ Super-Highlighter is a professional, privacy-focused WebExtension built specific
 
 ## 🚀 Installation
 
-### For Users (Development/Test)
+### For Firefox Users
 
-1. **Clone the repository:**
+#### Option 1: Load as Temporary Add-on (Development/Evaluation)
+
+1. **Download the Source Code:**
+   - Clone this repository or click "Code → Download ZIP" and extract.
    ```bash
    git clone https://github.com/YahyaSvm/Super-Highlighter.git
    ```
-2. **Open Firefox and navigate to:**
-   ```
-   about:debugging#/runtime/this-firefox
-   ```
-3. **Click "Load Temporary Add-on"**  
-   Select the `manifest.json` file from the project directory.
 
-> **Note:** For persistent use, reload the extension after each Firefox restart. For production release, package and submit to [AMO (addons.mozilla.org)](https://addons.mozilla.org/).
+2. **Open Firefox and Navigate to Add-on Debugging:**
+   - Enter `about:debugging#/runtime/this-firefox` in the address bar.
+
+3. **Load the Extension:**
+   - Click **"Load Temporary Add-on..."**.
+   - Select the `manifest.json` file from the extracted folder.
+
+4. **Use the Extension:**
+   - The Super-Highlighter icon should now appear in your Firefox toolbar.
+   - Temporary add-ons are removed when you restart Firefox. For persistent usage, see the next option.
+
+#### Option 2: Build and Install as a Permanent Add-on (Advanced/Recommended for Regular Use)
+
+1. **Package the Extension:**
+   - (Optional) Install [web-ext](https://extensionworkshop.com/documentation/develop/web-ext-command-reference/) for building/testing:
+     ```bash
+     npm install --global web-ext
+     ```
+   - In the extension directory:
+     ```bash
+     web-ext build
+     ```
+   - This creates a `.zip` file in the `web-ext-artifacts/` directory.
+
+2. **Install the Package:**
+   - Go to `about:addons` in Firefox.
+   - Click the gear icon → "Install Add-on From File..."
+   - Select the generated `.zip` file.
+
+3. **Automatic Reloading (Development):**
+   - Instead of manual reload, use:
+     ```bash
+     web-ext run
+     ```
+   - This launches a new Firefox window with the extension auto-loaded and auto-reloads on code changes.
+
+#### Option 3: From AMO (When Available)
+- Once published, simply visit [Firefox Add-ons](https://addons.mozilla.org/) and search for “Super-Highlighter” for one-click installation and automatic updates.
+
+---
+
+### ⚠️ Troubleshooting & Notes
+
+- **Permissions:**  
+  If you receive permission warnings, review them—Super-Highlighter only requests what's absolutely necessary for functionality.
+- **Persistence:**  
+  Temporary add-ons are cleared when Firefox is restarted. Use permanent installation for uninterrupted use.
+- **Updates:**  
+  If you update the source code, reload the extension via `about:debugging` or re-install the updated package.
+- **Other Browsers:**  
+  Chrome and Chromium-based browser support is experimental and not officially maintained.
 
 ---
 
