@@ -1,187 +1,170 @@
-# Super-Highlighter — Professional Text Highlighting WebExtension for Firefox
+# Super-Highlighter — Cross-Browser Text Highlighting Extension (Firefox Stable, Chrome In Development)
 
-Super-Highlighter is a professional, privacy-focused WebExtension built specifically for Mozilla Firefox. It enables users to highlight and annotate text on any webpage with persistent, customizable, and easily manageable highlights. Designed for researchers, students, and productivity enthusiasts seeking seamless knowledge management directly in their browser.
+Super-Highlighter is a privacy-focused WebExtension that lets you highlight and annotate text on webpages with persistent, customizable highlights and notes. Currently stable on Firefox; a Chrome/Chromium port is under active development (beta / not yet feature-complete).
 
 ---
 
 ## 🏆 Features
 
-- **Advanced Text Highlighting:**  
-  Instantly highlight selected text in multiple customizable colors.
-- **Annotations:**  
-  Add contextual notes to any highlight for deeper understanding.
-- **Persistent Local Storage:**  
-  Highlights and notes are stored securely in your browser—no cloud or third-party servers.
-- **Centralized Highlight Management:**  
-  View, edit, search, and delete all your highlights from a dedicated dashboard popup.
-- **Multi-Color & Custom Styles:**  
-  Select from preset colors or define your own for accessibility and clarity.
-- **Keyboard Shortcuts:**  
-  Configure hotkeys for lightning-fast highlighting and annotation.
-- **Dynamic Content Support:**  
-  Reliable highlighting even on modern, JavaScript-heavy or frequently changing webpages.
-- **Minimal Permissions & Privacy:**  
-  No analytics, tracking, or unnecessary permissions.
+- Fast multi-color text highlighting
+- Inline / popup annotations (note attachments)
+- Persistent local storage (no servers)
+- Highlight manager (search, edit, delete)
+- Custom color palette & styling
+- Keyboard shortcut support
+- Works on many dynamic / JavaScript-heavy pages
+- Minimal permissions & zero tracking
+- Open source & auditable
+
+### In-Progress (Chrome Beta)
+- Manifest V3 adaptation
+- Consistent styling parity with Firefox build
+- Robust re-highlighting on heavy DOM mutations
+- Export / import (planned)
 
 ---
 
-## 🌐 Browser & Technology
+## 🌐 Browser Support
 
-| Browser  | Support   |
-|----------|-----------|
-| ![Firefox Icon](https://raw.githubusercontent.com/alrra/browser-logos/main/src/firefox/firefox_32x32.png) **Firefox** | 100% ✔️ (fully supported and recommended) |
-| ![Chrome Icon](https://raw.githubusercontent.com/alrra/browser-logos/main/src/chrome/chrome_32x32.png) **Chrome** | Experimental (not officially maintained) |
+| Browser | Status |
+|---------|--------|
+| Firefox | Stable / Fully Supported |
+| Chrome / Chromium | In Development (Beta, may have bugs) |
 
-- **Primary Language:** JavaScript (ES6+)
-- **UI & Styles:** HTML5, CSS3
-- **Extension Type:** [WebExtension API](https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions)
-- **Icons:** Provided in `/icons` directory
+> Chrome support is functional for core highlighting, but some advanced behaviors (edge cases in dynamic pages, full annotation styling parity, certain shortcut flows) are still being refined.
 
 ---
 
 ## 🚀 Installation
 
-### For Firefox Users
-
-#### Option 1: Load as Temporary Add-on (Development/Evaluation)
-
-1. **Download the Source Code:**
-   - Clone this repository or click "Code → Download ZIP" and extract.
+### Firefox (Stable)
+1. Clone repository:
    ```bash
    git clone https://github.com/YahyaSvm/Super-Highlighter.git
    ```
+2. Open `about:debugging#/runtime/this-firefox`.
+3. Click "Load Temporary Add-on" → select `manifest.json`.
+4. (For persistence) Optionally build a distributable:
+   ```bash
+   npm install --global web-ext   # optional helper
+   web-ext build
+   ```
+5. Install generated ZIP via `about:addons` → gear → Install Add-on From File.
 
-2. **Open Firefox and Navigate to Add-on Debugging:**
-   - Enter `about:debugging#/runtime/this-firefox` in the address bar.
+### Chrome / Chromium (Beta / WIP)
+1. Clone repository (same as above).
+2. Open `chrome://extensions/`.
+3. Enable Developer Mode.
+4. Click "Load unpacked" and select the project folder.
+5. Pin the extension from the toolbar.
 
-3. **Load the Extension:**
-   - Click **"Load Temporary Add-on..."**.
-   - Select the `manifest.json` file from the extracted folder.
-
-4. **Use the Extension:**
-   - The Super-Highlighter icon should now appear in your Firefox toolbar.
-   - Temporary add-ons are removed when you restart Firefox. For persistent usage, see the next option.
-
-#### Option 2: Build and Install as a Permanent Add-on (Advanced/Recommended for Regular Use)
-
-1. **Package the Extension:**
-   - (Optional) Install [web-ext](https://extensionworkshop.com/documentation/develop/web-ext-command-reference/) for building/testing:
-     ```bash
-     npm install --global web-ext
-     ```
-   - In the extension directory:
-     ```bash
-     web-ext build
-     ```
-   - This creates a `.zip` file in the `web-ext-artifacts/` directory.
-
-2. **Install the Package:**
-   - Go to `about:addons` in Firefox.
-   - Click the gear icon → "Install Add-on From File..."
-   - Select the generated `.zip` file.
-
-3. **Automatic Reloading (Development):**
-   - Instead of manual reload, use:
-     ```bash
-     web-ext run
-     ```
-   - This launches a new Firefox window with the extension auto-loaded and auto-reloads on code changes.
-
-#### Option 3: From AMO (When Available)
-- Once published, simply visit [Firefox Add-ons](https://addons.mozilla.org/) and search for “Super-Highlighter” for one-click installation and automatic updates.
+Notes (Chrome Beta):
+- Background/event behavior still tuned; reload extension if highlights fail after navigation.
+- Some styling or annotation edge cases may differ from Firefox.
+- Manifest is currently MV2 style; MV3 migration is planned.
 
 ---
 
-### ⚠️ Troubleshooting & Notes
+## 💡 Usage
 
-- **Permissions:**  
-  If you receive permission warnings, review them—Super-Highlighter only requests what's absolutely necessary for functionality.
-- **Persistence:**  
-  Temporary add-ons are cleared when Firefox is restarted. Use permanent installation for uninterrupted use.
-- **Updates:**  
-  If you update the source code, reload the extension via `about:debugging` or re-install the updated package.
-- **Other Browsers:**  
-  Chrome and Chromium-based browser support is experimental and not officially maintained.
+1. Select text → use context menu item or popup to create highlight.
+2. (Optional) Add / edit an annotation via popup interface.
+3. Manage existing highlights (search, edit, delete) from popup dashboard.
+4. Customize colors and (where supported) shortcuts via browser extension shortcut settings.
 
----
-
-## 💡 How to Use
-
-1. **Highlight Text:**  
-   - Select the desired text on any webpage.
-   - Right-click and select **"Highlight with Super-Highlighter"** or use the extension popup.
-
-2. **Add Annotations:**  
-   - After highlighting, add a note in the popup interface.
-
-3. **Manage Highlights:**  
-   - Click the extension icon to open the dashboard.
-   - Edit, delete, or search your highlights and annotations.
-
-4. **Customize Settings:**  
-   - From the popup settings, adjust highlight colors, annotation styles, and shortcuts.
+### Shortcuts
+- Firefox: `about:addons` → Manage Extension → Manage Shortcuts
+- Chrome: `chrome://extensions/shortcuts`
 
 ---
 
 ## 🗂️ Project Structure
-
 ```
 Super-Highlighter/
-├── background.js      # Handles background events, context menus
-├── content.js         # Injected into pages for highlighting logic
-├── highlight.css      # Highlight/annotation styles
-├── popup.html         # Main popup UI
-├── popup.js           # Popup logic and dashboard management
-├── popup.css          # Popup styling
-├── manifest.json      # Firefox WebExtension manifest
-├── icons/             # Extension and toolbar icons
-├── LICENSE            # MIT License
-└── README.md          # Project documentation
+├── background.js       # Background logic (context menus, lifecycle)
+├── content.js          # Injected script for selection & DOM highlighting
+├── highlight.css       # Highlight & annotation visual styles
+├── popup.html          # Popup / manager UI
+├── popup.js            # Popup logic (render, CRUD, search)
+├── popup.css           # Popup styles
+├── manifest.json       # WebExtension manifest (MV2 style; MV3 planned)
+├── icons/              # Icon assets (16,32,48,128 etc.)
+├── LICENSE             # MIT License
+└── README.md           # Documentation
 ```
 
 ---
 
 ## ⚙️ Configuration & Customization
-
-- **Highlight Colors:**  
-  Choose default and custom highlight colors in the settings panel.
-- **Annotation Options:**  
-  Enable/disable annotations or configure appearance.
-- **Shortcuts:**  
-  Set or customize keyboard shortcuts via Firefox's extension shortcut settings.
+- Color palette (default + custom)
+- Toggle / style annotations
+- Shortcut mappings (browser-level configuration)
+- (Planned) Export / import of highlight sets
 
 ---
 
-## 👨‍💻 Contribution
-
-Contributions are highly encouraged!  
-- Fork the repository and create feature branches.
-- Document your code and follow clean coding standards.
-- Submit pull requests with clear descriptions.
-
-For bug reports or feature requests, [open an issue](https://github.com/YahyaSvm/Super-Highlighter/issues).
+## 🧪 Chrome Beta Notes
+| Aspect | Status |
+|--------|--------|
+| Core highlighting | Working |
+| Annotations | Working (styling parity improving) |
+| Re-apply after dynamic changes | Partial (mutation handling improvements planned) |
+| Shortcut reliability | Basic |
+| MV3 migration | Pending |
 
 ---
 
-## 🔒 Privacy & Security
+## ⚠️ Troubleshooting
+- Highlights missing after page updates: Page may re-render; reload the tab or re-trigger highlight (mutation observer refinements in progress for Chrome).
+- Icons not showing: Ensure all referenced sizes exist in `manifest.json`.
+- Shortcut conflicts: Adjust via browser shortcut settings.
+- Chrome errors on reload: If background script becomes inactive, remove + re-load unpacked folder.
 
-- **No tracking or data collection.**
-- **No unnecessary permissions.**
-- **Completely open source and auditable.**
+---
+
+## 🔒 Privacy
+- No external requests
+- No telemetry / analytics
+- Local-only storage
+- Minimal permission scope
+
+---
+
+## 🧩 Roadmap
+- Chrome Manifest V3 migration
+- Export / import (JSON)
+- Sync storage option (optional)
+- Advanced search filters (URL domain, date)
+- PDF integration
+- Theming (dark / light auto mode)
+
+---
+
+## 🤝 Contribution
+1. Fork the repository
+2. Create a feature branch:
+   ```bash
+   git checkout -b feat/your-feature
+   ```
+3. Commit clearly:
+   ```bash
+   git commit -m "feat: add X"
+   ```
+4. Open a Pull Request with description & rationale
+
+Issues / Feature requests: https://github.com/YahyaSvm/Super-Highlighter/issues
 
 ---
 
 ## 📝 License
-
-This project is licensed under the MIT License. See [LICENSE](LICENSE) for details.
-
----
-
-## 💬 Contact & Support
-
-- Questions or feedback? [Open an issue](https://github.com/YahyaSvm/Super-Highlighter/issues)
-- Author: [YahyaSvm](https://github.com/YahyaSvm)
+MIT — see `LICENSE`.
 
 ---
 
-> **Super-Highlighter** — Your professional, private, and powerful tool for web research, reading, and productivity, built for Firefox.
+## 📬 Contact
+Author: [YahyaSvm](https://github.com/YahyaSvm)
+Feedback & bugs: GitHub Issues
+
+---
+
+> Super-Highlighter — Clean, private, stable on Firefox and evolving on Chrome.
