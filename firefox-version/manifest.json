@@ -1,0 +1,107 @@
+{
+  "manifest_version": 2,
+  "name": "Super Highlighter",
+  "short_name": "Super Highlighter",
+  "version": "1.0.0",
+  "description": "Persistent text highlighting for web pages. Highlights are stored locally and restored when pages reload.",
+  
+  "permissions": [
+    "storage",
+    "activeTab",
+    "tabs",
+    "<all_urls>"
+  ],
+  
+  "background": {
+    "scripts": ["background.js"],
+    "persistent": false
+  },
+  
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["content.js"],
+      "css": ["highlight.css"],
+      "run_at": "document_idle",
+      "all_frames": false
+    }
+  ],
+  
+  "browser_action": {
+    "default_popup": "popup.html",
+    "default_title": "Super Simple Highlighter",
+    "default_icon": {
+      "16": "icons/icon-16.svg",
+      "32": "icons/icon-32.svg",
+      "48": "icons/icon-48.svg",
+      "128": "icons/icon-128.svg"
+    }
+  },
+  
+  "commands": {
+    "highlight-yellow": {
+      "suggested_key": {
+        "default": "Ctrl+Shift+Y",
+        "windows": "Ctrl+Shift+Y",
+        "mac": "Command+Shift+Y",
+        "linux": "Ctrl+Shift+Y"
+      },
+      "description": "Sarı ile işaretle"
+    },
+    "highlight-green": {
+      "suggested_key": {
+        "default": "Ctrl+Shift+G",
+        "windows": "Ctrl+Shift+G", 
+        "mac": "Command+Shift+G",
+        "linux": "Ctrl+Shift+G"
+      },
+      "description": "Yeşil ile işaretle"
+    },
+    "highlight-blue": {
+      "suggested_key": {
+        "default": "Ctrl+Shift+B",
+        "windows": "Ctrl+Shift+B",
+        "mac": "Command+Shift+B", 
+        "linux": "Ctrl+Shift+B"
+      },
+      "description": "Mavi ile işaretle"
+    },
+    "highlight-red": {
+      "suggested_key": {
+        "default": "Ctrl+Shift+R",
+        "windows": "Ctrl+Shift+R",
+        "mac": "Command+Shift+R",
+        "linux": "Ctrl+Shift+R"
+      },
+      "description": "Kırmızı ile işaretle"
+    },
+    "remove-highlight": {
+      "suggested_key": {
+        "default": "Ctrl+Shift+X",
+        "windows": "Ctrl+Shift+X",
+        "mac": "Command+Shift+X",
+        "linux": "Ctrl+Shift+X"
+      },
+      "description": "İşaretlemeyi kaldır"
+    }
+  },
+  
+  "icons": {
+    "16": "icons/icon-16.svg",
+    "32": "icons/icon-32.svg", 
+    "48": "icons/icon-48.svg",
+    "128": "icons/icon-128.svg"
+  },
+  
+  "web_accessible_resources": [
+    "highlight.css",
+    "icons/*.svg"
+  ],
+  
+  "applications": {
+    "gecko": {
+      "id": "super-simple-highlighter@firefox.addon",
+      "strict_min_version": "57.0"
+    }
+  }
+}

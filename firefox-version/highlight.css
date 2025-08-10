@@ -1,0 +1,116 @@
+/* Styles for Super Simple Highlighter */
+
+/* Highlight colors - Layout-safe design to prevent text shifting */
+.ssh-highlight {
+  /* Layout preservation - critical for preventing text movement */
+  display: inline !important;
+  position: static !important;
+  margin: 0 !important;
+  padding: 2px 4px !important;
+  border: none !important;
+  box-shadow: none !important;
+  outline: none !important;
+  
+  /* Visual styling only */
+  border-radius: 3px;
+  cursor: pointer;
+  
+  /* Safe transitions - only opacity changes */
+  transition: opacity 0.2s ease;
+  
+  /* Prevent any layout-affecting changes */
+  float: none !important;
+  vertical-align: baseline !important;
+  line-height: inherit !important;
+  font-size: inherit !important;
+  font-family: inherit !important;
+  font-weight: inherit !important;
+  text-decoration: inherit !important;
+  white-space: inherit !important;
+  word-spacing: inherit !important;
+  letter-spacing: inherit !important;
+}
+
+.ssh-highlight:hover {
+  /* Only change opacity - no transforms, filters, or layout changes */
+  opacity: 0.8;
+}
+
+.ssh-yellow {
+  background: rgba(255, 255, 0, 0.3) !important;
+}
+
+.ssh-green {
+  background: rgba(144, 238, 144, 0.3) !important;
+}
+
+.ssh-blue {
+  background: rgba(173, 216, 230, 0.3) !important;
+}
+
+.ssh-red {
+  background: rgba(255, 182, 193, 0.3) !important;
+}
+
+/* Tooltip styles - Modern and smooth */
+.ssh-tooltip {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(200, 200, 200, 0.3);
+  border-radius: 12px;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.15);
+  padding: 12px;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-size: 12px;
+  pointer-events: all;
+}
+
+.ssh-tooltip-colors {
+  display: flex;
+  gap: 6px;
+}
+
+.ssh-color-btn {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 11px;
+  color: #333;
+  border: none;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.ssh-color-btn:hover {
+  transform: scale(1.15);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+}
+
+.ssh-color-btn:active {
+  transform: scale(0.95);
+}
+
+.ssh-remove-btn {
+  background: linear-gradient(135deg, #ff6b6b, #ff5252) !important;
+  color: white !important;
+  font-size: 14px;
+  font-weight: normal;
+}
+
+.ssh-remove-btn:hover {
+  background: linear-gradient(135deg, #ff5252, #ff4444) !important;
+}
+
+/* Print styles - ensure highlights are visible when printing */
+@media print {
+  .ssh-highlight {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+}

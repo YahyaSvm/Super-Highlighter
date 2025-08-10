@@ -1,0 +1,73 @@
+{
+  "manifest_version": 3,
+  "name": "Super Highlighter",
+  "version": "1.0.0",
+  "description": "Persistent text highlighting tool for web pages. Highlight important text with custom colors and keep your highlights across browser sessions.",
+  
+  "permissions": [
+    "storage",
+    "activeTab",
+    "scripting",
+    "tabs"
+  ],
+  
+  "host_permissions": [
+    "<all_urls>"
+  ],
+  
+  "background": {
+    "service_worker": "background.js"
+  },
+  
+  "content_scripts": [{
+    "matches": ["<all_urls>"],
+    "js": ["content.js"],
+    "css": ["highlight.css"],
+    "run_at": "document_idle"
+  }],
+  
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "Super Highlighter",
+    "default_icon": {
+      "16": "icons/icon-16.svg",
+      "32": "icons/icon-32.svg",
+      "48": "icons/icon-48.svg",
+      "128": "icons/icon-128.svg"
+    }
+  },
+  
+  "icons": {
+    "16": "icons/icon-16.svg",
+    "32": "icons/icon-32.svg",
+    "48": "icons/icon-48.svg",
+    "128": "icons/icon-128.svg"
+  },
+  
+  "commands": {
+    "highlight-yellow": {
+      "suggested_key": {
+        "default": "Ctrl+Shift+Y"
+      },
+      "description": "Highlight with yellow"
+    },
+    "highlight-green": {
+      "suggested_key": {
+        "default": "Ctrl+Shift+G"
+      },
+      "description": "Highlight with green"
+    },
+    "highlight-blue": {
+      "suggested_key": {
+        "default": "Ctrl+Shift+B"
+      },
+      "description": "Highlight with blue"
+    },
+    "remove-highlight": {
+      "suggested_key": {
+        "default": "Ctrl+Shift+X"
+      },
+      "description": "Remove highlight"
+    }
+  }
+}
